@@ -1,0 +1,1 @@
+export const INJECT_ANTIFRAUD_KAFKA= 'inject:antifraud:kafka';

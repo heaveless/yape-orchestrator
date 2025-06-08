@@ -5,11 +5,11 @@ import { IsJWT, IsNumberString, IsPhoneNumber, IsString } from "class-validator"
 export class UserLoginRequest {
     @IsString()
     @IsPhoneNumber()
-    phone: number;
+    phone: string;
 
     @IsString()
     @IsNumberString()
-    code: number;
+    code: string;
 };
 
 export type UserLoginResponse = {

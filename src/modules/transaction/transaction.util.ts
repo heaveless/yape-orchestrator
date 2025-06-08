@@ -1,10 +1,10 @@
-enum TransactionStatus {
+export enum TransactionStatus {
     PENDING,
     APPROVED,
     REJECTED
 }
 
-enum TransactionType {
+export enum TransactionType {
     TRANSFER = 1,
     DEPOSIT,
     WITHDRAWAL,

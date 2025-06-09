@@ -21,6 +21,10 @@ export class TransactionController {
         @Param("id")
         id: string
     ): Promise<GetOneTransactionResponse> {
+        if (!id) {
+
+        }
+
         return this.transactionService.getOne({ id })
     }
 
@@ -31,6 +35,10 @@ export class TransactionController {
         @Query("cursor")
         cursor?: string
     ): Promise<GetManyTransactionResponse> {
+        if (!account) {
+
+        }
+
         return this.transactionService.getMany({ account, cursor });
     }
 }

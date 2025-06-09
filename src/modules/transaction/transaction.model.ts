@@ -1,4 +1,4 @@
-import { IsDecimal, IsNumber, IsString, IsUUID } from "class-validator";
+import { IsNumber, IsString, IsUUID } from "class-validator";
 
 // CREATE
 
@@ -14,7 +14,7 @@ export class CreateTransactionRequest {
     @IsNumber()
     tranferTypeId: number;
 
-    @IsDecimal()
+    @IsNumber()
     value: number;
 }
 

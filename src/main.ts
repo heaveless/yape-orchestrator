@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ConsoleLogger } from '@nestjs/common';
+import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 
 if (process.env.NODE_ENV === 'dev') {
   require('dotenv').config();
@@ -15,6 +15,7 @@ async function bootstrap() {
     }),
   });
   app.setGlobalPrefix('api')
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();

@@ -14,7 +14,7 @@ export class AntifraudKafkaOptions implements ClientsModuleOptionsFactory {
             options: {
                 client: {
                     clientId: 'or-antifraud',
-                    brokers: this.configService.get<Array<string>>('antifraud.KAFKA_BROKERS', [])
+                    brokers: this.configService.getOrThrow<Array<string>>('antifraud.KAFKA_BROKERS')
                 },
                 producerOnlyMode: true
             },

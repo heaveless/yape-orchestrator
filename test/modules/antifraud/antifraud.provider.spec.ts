@@ -49,7 +49,7 @@ describe('AntifraudProvider', () => {
             provider.sendTransaction(payload);
 
             expect(kafkaClient.emit).toHaveBeenCalledWith(
-                'transaction-transaction-topic',
+                'antifraud-transaction-topic',
                 payload
             );
         });

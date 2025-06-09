@@ -2,6 +2,10 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConsoleLogger } from '@nestjs/common';
 
+if (process.env.NODE_ENV === 'dev') {
+  require('dotenv').config();
+}
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: new ConsoleLogger({

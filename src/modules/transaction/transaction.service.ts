@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { TransactionProvider } from "./transaction.provider";
 import { AntifraudService } from "../antifraud/antifraud.service";
 import { CreateTransactionArgs, CreateTransactionReturn, GetManyTransactionArgs, GetManyTransactionReturn, GetOneTransactionArgs, GetOneTransactionReturn } from "./transaction.model";
@@ -6,6 +6,8 @@ import { getStatusName, getTypeName } from "./transaction.util";
 
 @Injectable()
 export class TransactionService {
+    private readonly logger = new Logger(TransactionService.name);
+
     constructor(
         private readonly transactionProvider: TransactionProvider,
         private readonly antifraudService: AntifraudService
@@ -14,12 +16,16 @@ export class TransactionService {
     async create(
         args: CreateTransactionArgs
     ): Promise<CreateTransactionReturn> {
+        this.logger.log('creating transaction...');
+
         const response = await this.transactionProvider.create({
             sourceAccountId: args.accountExternalIdDebit,
             destinationAccountId: args.accountExternalIdCredit,
             typeId: args.tranferTypeId,
             amount: args.value
         });
+
+        this.logger.log('preparing transaction for evaluation...')
 
         this.antifraudService.sendTransaction({
             id: response.id,

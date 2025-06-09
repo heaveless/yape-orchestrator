@@ -14,6 +14,6 @@ export class AntifraudProvider implements OnModuleInit {
     sendTransaction(
         payload: SendTransactionExternalPayload
     ): SendTransactionExternalResult {
-        this.kafka.emit('transaction-transaction-topic', payload);
+        this.kafka.emit('antifraud-transaction-topic', payload);
     }
 }
